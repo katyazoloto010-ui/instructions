@@ -14,28 +14,42 @@ if ($_SESSION['role'] != 'admin') {
 </head>
 
 <body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="image/logo.png" alt="Логотип Роскадастр" class="logo">
+            <h1 class="app-title">Журнал инструктажей и обучений</h1>
+        </div>
 
-    <h2>Добавить инструктаж</h2>
-    <a href="dashboard.php">Назад</a>
+        <h2 class="page-title">Добавить инструктаж</h2>
+        
+        <a href="dashboard.php" class="btn btn-secondary">Назад</a>
 
-    <form method="POST" action="php/add_instruction.php">
+        <form method="POST" action="php/add_instruction.php" class="auth-form">
+            <div class="form-group">
+                <label class="form-label">Тип:</label>
+                <select name="type_id" class="form-input form-select">
+                    <?php
+                    $stmt = $conn->query("SELECT * FROM instruction_types");
+                    while ($t = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<option value='{$t['id']}'>{$t['name']}</option>";
+                    }
+                    ?>
+                </select>
+            </div>
 
-        Тип:
-        <select name="type_id">
-            <?php
-            $stmt = $conn->query("SELECT * FROM instruction_types");
-            while ($t = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<option value='{$t['id']}'>{$t['name']}</option>";
-            }
-            ?>
-        </select>
+            <div class="form-group">
+                <label class="form-label">Дата:</label>
+                <input type="date" name="date" class="form-input">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Инструктор:</label>
+                <input type="text" name="instructor" class="form-input">
+            </div>
 
-        Дата: <input type="date" name="date">
-        Инструктор: <input type="text" name="instructor">
-
-        <input type="submit">Добавить</button>
-
-    </form>
+            <button type="submit" class="btn btn-primary">Добавить</button>
+        </form>
+    </div>
 
 </body>
 

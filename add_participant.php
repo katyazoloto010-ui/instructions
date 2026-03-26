@@ -15,41 +15,52 @@ if ($_SESSION['role'] != 'admin') {
 </head>
 
 <body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="image/logo.png" alt="Логотип Роскадастр" class="logo">
+            <h1 class="app-title">Журнал инструктажей и обучений</h1>
+        </div>
 
-    <h2>Назначить инструктаж</h2>
-    <a href="dashboard.php">Назад</a>
+        <h2 class="page-title">Назначить инструктаж</h2>
+        
+        <a href="dashboard.php" class="btn btn-secondary">Назад</a>
 
-    <form method="POST" action="php/add_participant.php">
+        <form method="POST" action="php/add_participant.php" class="auth-form">
+            <div class="form-group">
+                <label class="form-label">Сотрудник:</label>
+                <select name="employee_id" class="form-input form-select">
+                    <?php
+                    $stmt = $conn->query("SELECT * FROM employees");
+                    while ($e = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<option value='{$e['id']}'>{$e['full_name']}</option>";
+                    }
+                    ?>
+                </select>
+            </div>
 
-        Сотрудник:
-        <select name="employee_id">
-            <?php
-            $stmt = $conn->query("SELECT * FROM employees");
-            while ($e = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<option value='{$e['id']}'>{$e['full_name']}</option>";
-            }
-            ?>
-        </select>
+            <div class="form-group">
+                <label class="form-label">Инструктаж:</label>
+                <select name="instruction_id" class="form-input form-select">
+                    <?php
+                    $stmt = $conn->query("SELECT * FROM instructions");
+                    while ($i = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<option value='{$i['id']}'>Инструктаж {$i['id']}</option>";
+                    }
+                    ?>
+                </select>
+            </div>
 
-        Инструктаж:
-        <select name="instruction_id">
-            <?php
-            $stmt = $conn->query("SELECT * FROM instructions");
-            while ($i = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<option value='{$i['id']}'>Инструктаж {$i['id']}</option>";
-            }
-            ?>
-        </select>
+            <div class="form-group">
+                <label class="form-label">Результат:</label>
+                <select name="result" class="form-input form-select">
+                    <option>пройден</option>
+                    <option>не пройден</option>
+                </select>
+            </div>
 
-        Результат:
-        <select name="result">
-            <option>пройден</option>
-            <option>не пройден</option>
-        </select>
-
-        <input type="submit">Добавить</button>
-
-    </form>
+            <button type="submit" class="btn btn-primary">Добавить</button>
+        </form>
+    </div>
 
 </body>
 

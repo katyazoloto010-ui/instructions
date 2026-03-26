@@ -11,14 +11,25 @@ session_start(); ?>
 </head>
 
 <body>
-    <h2>Вход в систему</h2>
+    <div class="container">
+        <div class="logo-container">
+            <img src="image/logo.png" alt="Логотип Роскадастр" class="logo">
+            <h1 class="app-title">Журнал инструктажей и обучений</h1>
+        </div>
 
-    <form method="POST" action="php/login.php">
-        <input type="text" name="login" placeholder="Логин">
-        <input type="password" name="password" placeholder="Пароль">
-        <button name="login_btn">Войти</button>
-        <a href="register.php">Регистрация</a>
-    </form>
+        <h2 class="page-title">Вход в систему</h2>
+
+        <form method="POST" action="php/login.php" class="auth-form">
+            <div class="form-group">
+                <input type="text" name="login" placeholder="Логин" class="form-input">
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Пароль" class="form-input">
+            </div>
+            <button name="login_btn" class="btn btn-primary">Войти</button>
+            <a href="register.php" class="link">Регистрация</a>
+        </form>
+    </div>
 
 </body>
 

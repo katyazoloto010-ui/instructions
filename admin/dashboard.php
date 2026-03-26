@@ -6,8 +6,9 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 'admin') {
     die('Доступ запрещен');
 }
 
-$stmt = $conn->query("SELECT * FROM users WHERE role='user'");
-$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// Получаем список сотрудников из таблицы employees
+$stmt = $conn->query("SELECT * FROM employees");
+$employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -27,43 +28,51 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <h1 class="page-title">Админ панель</h1>
 
+        <!-- Секция управления -->
         <section class="content-section">
-            <h2 class="section-title">Сотрудники</h2>
+            <h2 class="section-title">Управление</h2>
+            <div class="action-buttons">
+                <a href="../add_employee.php" class="btn btn-primary">Добавить сотрудника</a>
+                <a href="../add_instruction.php" class="btn btn-primary">Добавить инструктаж</a>
+                <a href="../add_participant.php" class="btn btn-primary">Назначить инструктаж</a>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+        <!-- Список сотрудников -->
+        <section class="content-section">
+            <h2 class="section-title">Список сотрудников</h2>
 
             <table class="data-table">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Логин</th>
+                        <th>ФИО</th>
+                        <th>Должность</th>
+                        <th>Отдел</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($users as $u): ?>
+                    <?php if (count($employees) > 0): ?>
+                        <?php foreach ($employees as $e): ?>
+                            <tr>
+                                <td><?= $e['id'] ?></td>
+                                <td><?= htmlspecialchars($e['full_name']) ?></td>
+                                <td><?= htmlspecialchars($e['position']) ?></td>
+                                <td><?= htmlspecialchars($e['department']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
                         <tr>
-                            <td><?= $u['id'] ?></td>
-                            <td><?= $u['login'] ?></td>
+                            <td colspan="4" class="empty-message">Сотрудники не найдены</td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </section>
 
         <hr class="divider">
-
-        <section class="content-section">
-            <h2 class="section-title">Добавить сотрудника</h2>
-
-            <form action="../php/add_user.php" method="POST" class="auth-form">
-                <div class="form-group">
-                    <input type="text" name="login" placeholder="Логин" class="form-input" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" name="password" placeholder="Пароль" class="form-input" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Добавить</button>
-            </form>
-        </section>
-
 
         <a href="../logout.php" class="btn btn-secondary">Выйти</a>
     </div>

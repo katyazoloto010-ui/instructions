@@ -23,7 +23,7 @@ if ($_SESSION['role'] != 'admin') {
 
         <h2 class="page-title">Назначить инструктаж</h2>
         
-        <a href="dashboard.php" class="btn btn-secondary">Назад</a>
+        <a href="admin/dashboard.php" class="btn btn-secondary">Назад</a>
 
         <form method="POST" action="php/add_participant.php" class="auth-form">
             <div class="form-group">

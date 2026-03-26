@@ -28,7 +28,6 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <h1 class="page-title">Админ панель</h1>
 
-        <!-- Секция управления -->
         <section class="content-section">
             <h2 class="section-title">Управление</h2>
             <div class="action-buttons">
@@ -38,9 +37,6 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </section>
 
-        <hr class="divider">
-
-        <!-- Список сотрудников -->
         <section class="content-section">
             <h2 class="section-title">Список сотрудников</h2>
 
@@ -72,7 +68,6 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </table>
         </section>
 
-        <hr class="divider">
 
         <a href="../logout.php" class="btn btn-secondary">Выйти</a>
     </div>

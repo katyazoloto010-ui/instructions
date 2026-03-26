@@ -23,17 +23,17 @@ if ($_SESSION['role'] != 'admin') {
 
         <h2 class="page-title">Добавить сотрудника</h2>
         
-        <a href="dashboard.php" class="btn btn-secondary">Назад</a><br><br>
+        <a href="admin/dashboard.php" class="btn btn-secondary">Назад</a>
 
         <form method="POST" action="php/add_employee.php" class="auth-form">
             <div class="form-group">
-                <input type="text" name="full_name" placeholder="ФИО" class="form-input"><br><br>
+                <input type="text" name="full_name" placeholder="ФИО" class="form-input" required>
             </div>
             <div class="form-group">
-                <input type="text" name="position" placeholder="Должность" class="form-input"><br><br>
+                <input type="text" name="position" placeholder="Должность" class="form-input" required>
             </div>
             <div class="form-group">
-                <input type="text" name="department" placeholder="Отдел" class="form-input"><br><br>
+                <input type="text" name="department" placeholder="Отдел" class="form-input" required>
             </div>
             <button type="submit" class="btn btn-primary">Добавить</button>
         </form>

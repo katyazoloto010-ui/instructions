@@ -8,4 +8,4 @@ $stmt->execute([
     $_POST['department']
 ]);
 
-header("Location: ../employees.php");
+header("Location: ../admin/dashboard.php");

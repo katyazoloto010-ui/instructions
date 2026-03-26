@@ -22,7 +22,7 @@ if ($_SESSION['role'] != 'admin') {
 
         <h2 class="page-title">Добавить инструктаж</h2>
         
-        <a href="dashboard.php" class="btn btn-secondary">Назад</a>
+        <a href="admin/dashboard.php" class="btn btn-secondary">Назад</a>
 
         <form method="POST" action="php/add_instruction.php" class="auth-form">
             <div class="form-group">
@@ -39,12 +39,12 @@ if ($_SESSION['role'] != 'admin') {
 
             <div class="form-group">
                 <label class="form-label">Дата:</label>
-                <input type="date" name="date" class="form-input">
+                <input type="date" name="date" class="form-input" required>
             </div>
             
             <div class="form-group">
                 <label class="form-label">Инструктор:</label>
-                <input type="text" name="instructor" class="form-input">
+                <input type="text" name="instructor" class="form-input" required>
             </div>
 
             <button type="submit" class="btn btn-primary">Добавить</button>
